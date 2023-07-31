@@ -1,4 +1,4 @@
-# Install packages, prepare the workspace
+### Install packages, prepare the workspace
 
 ```R
 library(tidyverse)
@@ -7,7 +7,7 @@ library(ggplot2)
 setwd("/Home/Desktop/cyclistic_case_study/cyclistic_data_original")
 ```
 
-# Upload datasets
+### Upload datasets
 
 ```R
 march_2022_trip <- read.csv("/Home/Desktop/project/cyclistic_case_study/cyclistic_data_original/2022-03_trip_data/202203-divvy-tripdata_original.csv")
@@ -27,7 +27,7 @@ sept_2022_trip <- read.csv("/Home/Desktop/project/cyclistic_case_study/cyclistic
 oct_2022_trip <- read.csv("/Home/Desktop/project/cyclistic_case_study/cyclistic_data_original/2022-10_trip_data/20221-divvy-tripdata_original.csv")
 ```
 
-# Rename columns  to make them consistent
+### Rename columns  to make them consistent
 
 ```R
 colnames(march_2022)
@@ -117,56 +117,56 @@ feb_2023 <- plyr::rename(feb_2023, vec_c("ride_id" = "trip_id", "rideable_type" 
                                          "member_casual" = "usertype"))
 ```
 
-# Union all trips
+### Union all trips
 
 ```R
 all_trips <- bind_rows(march_2022, april_2022, may_2022, june_2022, july_2022, august_2022, sept_2022, oct_2022, nov_2022, dec_2022, jan_2023, feb_2023) 
 ```
 
-# List of column names
+### List of column names
 
 ```R
 colnames(all_trips)
 ```
 
-# Row numbers of the data frame
+### Row numbers of the data frame
 
 ```R
 nrow(all_trips)
 ```
 
-# Dimensions of the data frame
+### Dimensions of the data frame
 
 ```R
 dim(all_trips)
 ```
 
-# First 6 rows of the data frame
+### First 6 rows of the data frame
 
 ```R
 head(all_trips)
 ```
 
-# List of columns and data types
+### List of columns and data types
 
 ```R
 str(all_trips)
 ```
 
-# Statistical summary of data
+### Statistical summary of data
 
 ```R
 summary(all_trips)
 ```
 
-# Checking user-type columns 
+### Checking user-type columns 
 
 ```R
 membership_counts<- table(all_trips$usertype)
 print(membership_counts)
 ```
 
-# Adding columns that list the date, month, day, and year of each ride
+### Adding columns that list the date, month, day, and year of each ride
 
 ```R
 all_trips$date <- as.Date(all_trips$start_time)
@@ -176,14 +176,14 @@ all_trips$year <- format(as.Date(all_trips$date), "%Y")
 all_trips$day_of_week <- format(as.Date(all_trips$date), "%A")
 ```
 
-# Add a "ride_length" calculation to all_trips (in seconds)
+### Add a "ride_length" calculation to all_trips (in seconds)
 
 ```R
 all_trips$ride_length <- difftime(all_trips$end_time, all_trips$start_time)
 str(all_trips)
 ```
 
-# Convert "ride_length" from Factor to numeric
+### Convert "ride_length" from Factor to numeric
 
 ```R
 is.factor(all_trips$ride_length)
@@ -193,26 +193,26 @@ all_trips$ride_length <- as.numeric(as.character(all_trips$ride_length))
 is.numeric(all_trips$ride_length)
 ```
 
-# Remove bad data
+### Remove bad data
 
 ```R
 all_trips_v2 <- all_trips[!(all_trips$from_station_name == "HQ QR" | all_trips$ride_length < 0), ]
 ```
 
-# Descriptive analysis on ride_length
+### Descriptive analysis on ride_length
 
 ```R
 is.numeric(all_trips_v2$ride_length)
 class(all_trips_v2$ride_length)
 ```
 
-# Mean value of ride length
+### Mean value of ride length
 
 ```R
 mean(all_trips_v2$ride_length)
 ```
 
-# Median value of ride length
+### Median value of ride length
 
 ```R
 unique_values <- unique(all_trips_v2$ride_length)
@@ -223,25 +223,25 @@ median_value <- median(filtered_data$ride_length)
 print(median_value)
 ```
 
-# Longest ride 
+### Longest ride 
 
 ```R
 max(all_trips_v2$ride_length)
 ```
 
-# Shortest ride
+### Shortest ride
 
 ```R
 min(all_trips_v2$ride_length)
 ```
 
-# Summary
+### Summary
 
 ```R
 summary(all_trips_v2$ride_length)
 ```
 
-# Compare members and casual users
+### Compare members and casual users
 
 ```R
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$usertype, FUN = mean)
@@ -250,25 +250,25 @@ aggregate(all_trips_v2$ride_length ~ all_trips_v2$usertype, FUN = max)
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$usertype, FUN = min)
 ```
 
-# See the average ride time by each day for members vs casual users
+### See the average ride time by each day for members vs casual users
 
 ```R
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$usertype + all_trips_v2$day_of_week, FUN = mean)
 ```
 
-# The days of the week order fixation
+### The days of the week order fixation
 
 ```R
 all_trips_v2$day_of_week <- ordered(all_trips_v2$day_of_week, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
 ```
 
-# The average ride time by each day for members vs casual users
+### The average ride time by each day for members vs casual users
 
 ```R
 aggregate(all_trips_v2$ride_length ~ all_trips_v2$usertype + all_trips_v2$day_of_week, FUN = mean)
 ```
 
-# Analyze user-type data by type and weekday
+### Analyze user-type data by type and weekday
 
 ```R
 usertype_avg_ride_time <- aggregate(ride_length ~ usertype + day_of_week, data = all_trips_v2, FUN = mean)
@@ -276,7 +276,7 @@ usertype_avg_ride_time <- aggregate(ride_length ~ usertype + day_of_week, data =
 print(usertype_avg_ride_time)
 ```
 
-# Create visualization for the average ride duration by user type
+### Create visualization for the average ride duration by user type
 
 ```R
 avg_time_by_usertype <- aggregate(ride_length ~ usertype, data = all_trips_v2, FUN = mean)
@@ -288,7 +288,7 @@ ggplot(avg_time_by_usertype, aes(x = usertype, y = ride_length, fill = usertype)
   ggtitle("Average Ride Time by User Type")
 ```
 
-# Create average ride duration by user type and day of week
+### Create average ride duration by user type and day of week
 
 ```R
 ggplot(usertype_avg_ride_time, aes(x = day_of_week, y = ride_length, fill = usertype)) +
@@ -299,7 +299,7 @@ ggplot(usertype_avg_ride_time, aes(x = day_of_week, y = ride_length, fill = user
   theme_minimal()
 ```
 
-# Create average ride duration by user type and day of week
+### Create average ride duration by user type and day of week
 
 ```R
 ggplot(usertype_avg_ride_time, aes(x = day_of_week, y = ride_length, fill = usertype)) +
@@ -310,7 +310,7 @@ ggplot(usertype_avg_ride_time, aes(x = day_of_week, y = ride_length, fill = user
   theme_minimal()
 ```
 
-# Create a visualization of the number of rides by user-type
+### Create a visualization of the number of rides by user-type
 
 ```R
 ride_count_by_usertype <- table(all_trips_v2$usertype)
@@ -324,7 +324,7 @@ ggplot(data.frame(usertype = names(ride_count_by_usertype), count = as.numeric(r
   scale_y_continuous(labels = scales::comma)
 ```
 
-# Create a visualization for the number of rides by day of the week
+### Create a visualization for the number of rides by day of the week
 
 ```R
 ride_count_by_day <- table(all_trips_v2$day_of_week)
@@ -340,7 +340,7 @@ ggplot(ride_count_df, aes(x = day_of_week, y = ride_count, fill = day_of_week)) 
   theme_minimal()
 ```
 
-# Create visualization for the number of rides by user type and day of the week
+### Create visualization for the number of rides by user type and day of the week
 
 ```R
 rides_by_usertype_day <- table(all_trips_v2$usertype, all_trips_v2$day_of_week)
