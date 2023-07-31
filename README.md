@@ -30,7 +30,15 @@ https://www.divvybikes.com/data-license-agreement
 
 Project Highlights in Visualizations:
 
------
+![Average Ride Time by User Type](https://github.com/denizevcimen/cyclistic-case-study-big-data-r/assets/129401731/54387aef-7d9d-44a3-8518-97481a764f42)
+
+![Average Ride Time by User Type and Day of the Week](https://github.com/denizevcimen/cyclistic-case-study-big-data-r/assets/129401731/f49c3502-91f2-4a3f-9ac3-ed24c3651e0d)
+
+![Number of Rides by User Type](https://github.com/denizevcimen/cyclistic-case-study-big-data-r/assets/129401731/71fbe26d-59b0-46b0-988d-ed07a21efa77)
+
+![Number of Rides by Day of the Week](https://github.com/denizevcimen/cyclistic-case-study-big-data-r/assets/129401731/6a25f667-d03b-45a5-a86d-d267a4d65541)
+
+![Number of Rides by User Type and Day of the Week](https://github.com/denizevcimen/cyclistic-case-study-big-data-r/assets/129401731/e3587975-5614-4329-950f-321b5b5831cf)
 
 Additionally, you can visit my other presentations with the sample datasets here:
 
