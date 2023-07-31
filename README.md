@@ -29,3 +29,13 @@ License to use data is available at :
 https://www.divvybikes.com/data-license-agreement
 
 Project Highlights in Visualizations:
+
+-----
+
+Additionally, you can visit my other presentations with the sample datasets here:
+
+Google Slides
+https://docs.google.com/presentation/d/16AnP5sXYlwnLgVwt5tGeskD--BeT_ITuPneEKoZgvPw/edit?usp=sharing&resourcekey=0-YGSFUJHJZrkGGO2c1s5Giw
+
+Tableau
+https://public.tableau.com/views/cyclistic_case_study_dashboards/CasualRidersandMembersbyDayofWeek?:language=en-US&:display_count=n&:origin=viz_share_link
